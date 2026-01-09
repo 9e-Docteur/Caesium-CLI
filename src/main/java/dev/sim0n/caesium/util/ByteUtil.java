@@ -9,9 +9,9 @@ import org.objectweb.asm.tree.ClassNode;
 public class ByteUtil {
 
     /**
-     * Converts a {@param bytes} to a {@link ClassNode}
+     * Converts the provided byte array into a {@link ClassNode}.
      * @param bytes The byte array to convert into a {@link ClassNode}
-     * @return A class node from {@param bytes}
+     * @return A class node from the provided byte array
      */
     public ClassNode parseClassBytes(byte[] bytes) {
         ClassReader reader = new ClassReader(bytes);
@@ -23,9 +23,9 @@ public class ByteUtil {
     }
 
     /**
-     * Converts {@param classNode} to a byte array
+     * Converts the provided {@link ClassNode} to a byte array.
      * @param classNode The class node to convert to a byte array
-     * @return A byte array from {@param classNode}
+     * @return A byte array from the provided {@link ClassNode}
      */
     public byte[] getClassBytes(ClassNode classNode) {
         CaesiumClassWriter classWriter = new CaesiumClassWriter(CaesiumClassWriter.COMPUTE_FRAMES);
@@ -37,9 +37,9 @@ public class ByteUtil {
     }
 
     /**
-     * Converts {@param bytes} to kb
+     * Converts bytes to kilobytes.
      * @param bytes The bytes to convert
-     * @return {@param bytes} in kb
+     * @return The provided bytes in kilobytes
      */
     public double bytesToKB(long bytes) {
         return bytes / 1024D;

@@ -129,7 +129,7 @@ public class ClassManager {
     }
 
     /**
-     * Exports {@param output}
+     * Exports the obfuscated output JAR.
      * @param output The obfuscated file to export
      * @throws CaesiumException If unable to write output data
      */

@@ -16,7 +16,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * Command-line entry point for running Caesium obfuscation in CI/Gradle pipelines.
+ * Supports enabling mutators, configuring dictionaries, and adding classpath libraries.
+ * Credits : @9e-Docteur
+ */
 public class CaesiumCli {
+    /**
+     * Parses CLI arguments, configures mutators, and runs the obfuscation pipeline.
+     * @param args CLI arguments
+     */
     public static void main(String[] args) {
         OptionParser parser = new OptionParser();
         OptionSpec<Void> help = parser
@@ -231,6 +240,9 @@ public class CaesiumCli {
         }
     }
 
+    /**
+     * Loads boot classpath JARs into the pre-runtime library list.
+     */
     private static void addBootClassPath() {
         String path = System.getProperty("sun.boot.class.path");
         if (path == null || path.trim().isEmpty()) {
@@ -245,6 +257,11 @@ public class CaesiumCli {
         }
     }
 
+    /**
+     * Builds the default output file name based on the input JAR.
+     * @param inputFile Input JAR file
+     * @return Suggested output file path
+     */
     private static File defaultOutputFile(File inputFile) {
         String name = inputFile.getName();
         String outputName;
@@ -258,6 +275,12 @@ public class CaesiumCli {
         return parent == null ? new File(outputName) : new File(parent, outputName);
     }
 
+    /**
+     * Ensures the output file can be written, optionally backing up an existing file.
+     * @param outputFile Output file path
+     * @param overwrite Whether to overwrite instead of backing up
+     * @return The output file to use, or null when it cannot be created
+     */
     private static File ensureOutput(File outputFile, boolean overwrite) {
         if (!outputFile.exists() || overwrite) {
             return outputFile;
@@ -287,6 +310,11 @@ public class CaesiumCli {
         return target;
     }
 
+    /**
+     * Parses a dictionary option into a {@link Dictionary} value.
+     * @param value Dictionary string
+     * @return Parsed dictionary enum
+     */
     private static Dictionary parseDictionary(String value) {
         String normalized = value.trim();
         if (normalized.isEmpty()) {
@@ -330,6 +358,11 @@ public class CaesiumCli {
         }
     }
 
+    /**
+     * Parses the line-number option into an internal type id.
+     * @param value Line number option string
+     * @return 0 for remove, 1 for scramble
+     */
     private static int parseLineNumberType(String value) {
         String normalized = value.trim().toLowerCase();
         switch (normalized) {
@@ -342,6 +375,11 @@ public class CaesiumCli {
         }
     }
 
+    /**
+     * Parses the local-variables option into an internal type id.
+     * @param value Local variable option string
+     * @return 0 for remove, 1 for rename
+     */
     private static int parseLocalVariableType(String value) {
         String normalized = value.trim().toLowerCase();
         switch (normalized) {
