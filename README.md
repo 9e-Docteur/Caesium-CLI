@@ -5,7 +5,7 @@ Caesium is a powerful Java bytecode obfuscator written by [sim0n](https://github
 
 ## Credits
 - Original author: [sim0n](https://github.com/sim0n)
-- CLI integration for Gradle: ninedocteur (lorisp)
+- CLI integration for Gradle: 9e-Docteur (ninedocteur / Loris P.)
 
 ### Currently available mutators
 * Class Folder (Turns classes into folders)
