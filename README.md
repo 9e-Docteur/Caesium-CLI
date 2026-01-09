@@ -3,6 +3,10 @@ Caesium is a powerful Java bytecode obfuscator written by [sim0n](https://github
 
 ![Image of Caesium UI](https://i.imgur.com/drrn9ib.png)
 
+## Credits
+- Original author: [sim0n](https://github.com/sim0n)
+- CLI integration for Gradle: ninedocteur (lorisp)
+
 ### Currently available mutators
 * Class Folder (Turns classes into folders)
 * Control Flow
@@ -23,6 +27,34 @@ Caesium is very optimised and the performance loss shouldn't be more than 5-10% 
 - Run the jar.
 - Select mutators in the mutators tab.
 - Hit mutate. Done!
+
+## CLI (Gradle)
+You can call the CLI entry point `be.ninedocteur.caesium.cli.CaesiumCli` from a Gradle `JavaExec` task.
+
+Example (Gradle Groovy DSL):
+```
+tasks.register("caesiumObfuscate", JavaExec) {
+    classpath = files("path/to/caesium-1.0.9.jar")
+    mainClass.set("be.ninedocteur.caesium.cli.CaesiumCli")
+    args "--input", "$buildDir/libs/app.jar",
+         "--output", "$buildDir/libs/app-obf.jar",
+         "--string", "--control-flow", "--number", "--line-number", "remove",
+         "--local-variables", "rename",
+         "--dictionary", "numbers"
+}
+```
+
+CLI options (partial list):
+- `--input` / `--output`
+- `--string` and `--string-exclude` (repeatable)
+- `--control-flow`, `--number`, `--polymorph`, `--reference`
+- `--class-folder`, `--trim`, `--shuffle`
+- `--crasher`, `--bad-annotation`, `--image-crash`
+- `--line-number` (`remove` or `scramble`)
+- `--local-variables` (`remove` or `rename`)
+- `--library` (repeatable)
+- `--dictionary` (`abc`, `ABC`, `III`, `numbers`, `wack`)
+- `--overwrite`
 
 ## Community 
 If you want to join the discord for Caesium to talk, ask questions or anything then feel free to join [the discord](https://discord.gg/kxC2FYMfNZ)
