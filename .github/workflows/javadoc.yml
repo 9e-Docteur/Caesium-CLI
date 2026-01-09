@@ -20,8 +20,24 @@ jobs:
           java-version: "8"
       - name: Generate Javadoc
         run: mvn -B javadoc:javadoc --file pom.xml
+      - name: Add root index redirect
+        run: |
+          mkdir -p target/site
+          cat <<'EOF' > target/site/index.html
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8">
+              <meta http-equiv="refresh" content="0; url=apidocs/">
+              <title>Caesium Javadoc</title>
+            </head>
+            <body>
+              <p>Redirecting to <a href="apidocs/">apidocs/</a></p>
+            </body>
+          </html>
+          EOF
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: target/site/apidocs
+          publish_dir: target/site
