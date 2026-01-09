@@ -1,18 +1,30 @@
-# Caesium
+# Caesium ✨
 Caesium is a fast, efficient Java bytecode obfuscator originally created by [sim0n](https://github.com/sim0n).
 This fork is maintained by **9e_Docteur (ninedocteur / Loris P.)**, with a CLI designed for automation (Gradle/CI) and real-world private project usage.
 
 ![Image of Caesium UI](https://i.imgur.com/drrn9ib.png)
 
-## Why this fork
+## Summary 📌
+- [Why this fork](#why-this-fork)
+- [Credits](#credits)
+- [Currently available mutators](#currently-available-mutators)
+- [Notes](#notes)
+- [Usage](#usage)
+- [CLI (Gradle)](#cli-gradle)
+- [Maven coordinates](#maven-coordinates)
+- [Community](#community)
+- [Changelog](#changelog)
+- [Special thanks to](#special-thanks-to)
+
+## Why this fork 🚀
 I built this version for my personal and private projects (closed-source), to have a reliable, easy-to-integrate, fully scriptable obfuscation pipeline.
 It's released to the public under the MIT license so anyone can use it freely and adapt it to their needs.
 
-## Credits
+## Credits 🙌
 - Original author: [sim0n](https://github.com/sim0n)
 - Fork & CLI integration: 9e_Docteur (ninedocteur / Loris P.)
 
-### Currently available mutators
+### Currently available mutators 🧩
 * Class Folder (Turns classes into folders)
 * Control Flow
 * Crasher (Will crash almost every GUI based RE tool)
@@ -24,17 +36,17 @@ It's released to the public under the MIT license so anyone can use it freely an
 * String
 * Trim (Currently only trims math functions)
 
-## Notes
+## Notes 📝
 You have to add every dependency your jar relies on.
 Caesium is very optimised and the performance loss shouldn't be more than 5-10% (unless you're using reference mutation)
 
-## Usage
-### GUI
+## Usage ▶️
+### GUI 🖥️
 - Run the jar with no arguments to open the GUI.
 - Select mutators in the mutators tab.
 - Hit mutate. Done!
 
-### CLI
+### CLI 🧰
 - Run the jar with arguments to use the CLI (no GUI will open).
 - The CLI is intended for automation (Gradle/CI) and headless use.
 - Example:
@@ -42,7 +54,7 @@ Caesium is very optimised and the performance loss shouldn't be more than 5-10% 
 java -jar caesium-cli-1.1.jar --input app.jar --output app-obf.jar --string --control-flow
 ```
 
-## CLI (Gradle)
+## CLI (Gradle) 🛠️
 You can call the CLI entry point `be.ninedocteur.caesium.cli.CaesiumCli` from a Gradle `JavaExec` task.
 
 Example (Gradle Groovy DSL):
@@ -70,7 +82,7 @@ CLI options (partial list):
 - `--dictionary` (`abc`, `ABC`, `III`, `numbers`, `wack`)
 - `--overwrite`
 
-## Maven coordinates
+## Maven coordinates 📦
 ```
 <dependency>
   <groupId>be.ninedocteur</groupId>
@@ -79,10 +91,23 @@ CLI options (partial list):
 </dependency>
 ```
 
-## Community 
+## Community 🌐
 If you want to join the discord for Caesium to talk, ask questions or anything then feel free to join [the discord](https://discord.gg/kxC2FYMfNZ)
 
-## Special thanks to
+## Changelog 📅
+### 1.1.1 (2026-01-09)
+- Added the CLI colored logger (INFO, SUCCESS, WARN, ERROR).
+
+### 1.1 (2026-01-09)
+- Added a full CLI entry point for automation (Gradle/CI), with options for mutators, dictionary, dependencies, and outputs.
+- CLI now auto-routes when arguments are passed; GUI remains default with no args.
+- Updated Maven coordinates to `be.ninedocteur:caesium-cli:1.1`.
+- Added GitHub Actions workflows for Javadoc publication and Maven package publishing.
+- Fixed Javadoc generation errors and improved documentation coverage.
+- Updated README with new usage, CLI notes, and Maven dependency snippet.
+- Added a simple compilation test script (`test-compile.sh`).
+
+## Special thanks to ❤️
 ![yourkit logo](https://www.yourkit.com/images/yklogo.png)
 
 [YourKit](https://www.yourkit.com/) is the creator of <a href="https://www.yourkit.com/java/profiler/">YourKit Java Profiler</a>, <a href="https://www.yourkit.com/.net/profiler/">YourKit .NET Profiler</a>, and <a href="https://www.yourkit.com/youmonitor/">YourKit YouMonitor</a>. They support open source projects with their fully featured application profilers. It's used to ensure that this project will be as fast as possible.

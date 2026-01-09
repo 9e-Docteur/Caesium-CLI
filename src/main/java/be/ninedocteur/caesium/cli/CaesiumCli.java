@@ -28,6 +28,7 @@ public class CaesiumCli {
      */
     public static void main(String[] args) {
         OptionParser parser = new OptionParser();
+        Logger.info("Caesium CLI started.");
         OptionSpec<Void> help = parser
                 .acceptsAll(Arrays.asList("h", "help"), "Show help")
                 .forHelp();
@@ -88,7 +89,7 @@ public class CaesiumCli {
         try {
             options = parser.parse(args);
         } catch (Exception e) {
-            System.err.println("Failed to parse arguments: " + e.getMessage());
+            Logger.error("Failed to parse arguments: " + e.getMessage());
             printHelp(parser);
             System.exit(-1);
             return;
@@ -101,7 +102,7 @@ public class CaesiumCli {
 
         File inputFile = input.value(options);
         if (!inputFile.exists()) {
-            System.err.println("Input file not found: " + inputFile.getAbsolutePath());
+            Logger.error("Input file not found: " + inputFile.getAbsolutePath());
             System.exit(-1);
             return;
         }
@@ -113,11 +114,14 @@ public class CaesiumCli {
             return;
         }
 
+        Logger.info("Input: " + inputFile.getAbsolutePath());
+        Logger.info("Output: " + outputFile.getAbsolutePath());
+
         addBootClassPath();
         for (String lib : options.valuesOf(library)) {
             File libFile = new File(lib);
             if (!libFile.exists()) {
-                System.err.println("Library not found: " + libFile.getAbsolutePath());
+                Logger.error("Library not found: " + libFile.getAbsolutePath());
                 System.exit(-1);
                 return;
             }
@@ -127,7 +131,7 @@ public class CaesiumCli {
         try {
             PreRuntime.loadInput(inputFile.getAbsolutePath());
         } catch (CaesiumException e) {
-            System.err.println("Failed to load input: " + e.getMessage());
+            Logger.error("Failed to load input: " + e.getMessage());
             System.exit(-1);
             return;
         }
@@ -141,7 +145,7 @@ public class CaesiumCli {
             try {
                 caesium.setDictionary(parseDictionary(dictionary.value(options)));
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                Logger.error(e.getMessage());
                 System.exit(-1);
                 return;
             }
@@ -202,7 +206,7 @@ public class CaesiumCli {
             try {
                 lineNumberMutator.setType(parseLineNumberType(lineNumber.value(options)));
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                Logger.error(e.getMessage());
                 System.exit(-1);
                 return;
             }
@@ -214,7 +218,7 @@ public class CaesiumCli {
             try {
                 localVariableMutator.setType(parseLocalVariableType(localVariables.value(options)));
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                Logger.error(e.getMessage());
                 System.exit(-1);
                 return;
             }
@@ -225,9 +229,11 @@ public class CaesiumCli {
             int exit = caesium.run(inputFile, outputFile);
             if (exit != 0) {
                 Caesium.getLogger().warn("Exited with non default exit code.");
+            } else {
+                Logger.success("Obfuscation completed successfully.");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.error("Obfuscation failed.", e);
             System.exit(-1);
         }
     }
@@ -236,7 +242,7 @@ public class CaesiumCli {
         try {
             parser.printHelpOn(System.out);
         } catch (IOException e) {
-            System.err.println("Unable to print help: " + e.getMessage());
+            Logger.error("Unable to print help: " + e.getMessage());
         }
     }
 
@@ -303,7 +309,7 @@ public class CaesiumCli {
         }
 
         if (target.exists()) {
-            System.err.println("Output file already exists and could not be renamed: " + outputFile.getAbsolutePath());
+            Logger.error("Output file already exists and could not be renamed: " + outputFile.getAbsolutePath());
             return null;
         }
 
