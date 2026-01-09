@@ -19,7 +19,7 @@ jobs:
           distribution: temurin
           java-version: "8"
       - name: Generate Javadoc
-        run: mvn -B javadoc:javadoc --file pom.xml
+        run: mvn -B javadoc:javadoc --file pom.xml -DoutputDirectory=target/site/apidocs
       - name: Add root index redirect
         run: |
           mkdir -p target/site
