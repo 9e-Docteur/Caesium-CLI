@@ -2,7 +2,7 @@ name: Publish Javadoc
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, main ]
   workflow_dispatch:
 
 permissions:
@@ -19,7 +19,18 @@ jobs:
           distribution: temurin
           java-version: "8"
       - name: Generate Javadoc
-        run: mvn -B javadoc:javadoc --file pom.xml -DoutputDirectory=target/site/apidocs
+        run: mvn -B javadoc:javadoc --file pom.xml -DreportOutputDirectory=target/site -DdestDir=apidocs
+      - name: Normalize Javadoc output
+        run: |
+          if [ -d target/reports/apidocs ] && [ ! -d target/site/apidocs ]; then
+            mkdir -p target/site
+            cp -a target/reports/apidocs target/site/
+          fi
+      - name: Verify Javadoc output
+        run: |
+          ls -la target/site
+          ls -la target/site/apidocs
+          test -f target/site/apidocs/index.html
       - name: Add root index redirect
         run: |
           mkdir -p target/site
