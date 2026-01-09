@@ -1,5 +1,6 @@
 package dev.sim0n.caesium.mutator.impl;
 
+import be.ninedocteur.caesium.cli.Logger;
 import dev.sim0n.caesium.mutator.ClassMutator;
 import dev.sim0n.caesium.util.wrapper.impl.ClassWrapper;
 import dev.sim0n.caesium.util.wrapper.impl.MethodWrapper;
@@ -53,6 +54,6 @@ public class LocalVariableMutator extends ClassMutator {
                 break;
         }
 
-        logger.info(output, counter);
+        Logger.info(String.format(output.replace("{}", "%d"), counter));
     }
 }

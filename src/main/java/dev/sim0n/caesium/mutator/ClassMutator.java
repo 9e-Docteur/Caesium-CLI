@@ -6,7 +6,6 @@ import dev.sim0n.caesium.util.trait.Finishable;
 import dev.sim0n.caesium.util.wrapper.impl.ClassWrapper;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.Opcodes;
 
 import java.security.SecureRandom;
@@ -14,7 +13,6 @@ import java.util.stream.IntStream;
 
 public abstract class ClassMutator implements Opcodes, Finishable {
     protected final Caesium caesium = Caesium.getInstance();
-    protected final Logger logger = Caesium.getLogger();
 
     protected final SecureRandom random = caesium.getRandom();
 

@@ -228,7 +228,7 @@ public class CaesiumCli {
         try {
             int exit = caesium.run(inputFile, outputFile);
             if (exit != 0) {
-                Caesium.getLogger().warn("Exited with non default exit code.");
+                Logger.warn("Exited with non default exit code.");
             } else {
                 Logger.success("Obfuscation completed successfully.");
             }

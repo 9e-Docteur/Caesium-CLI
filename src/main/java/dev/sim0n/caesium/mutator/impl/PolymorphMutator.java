@@ -1,5 +1,6 @@
 package dev.sim0n.caesium.mutator.impl;
 
+import be.ninedocteur.caesium.cli.Logger;
 import dev.sim0n.caesium.mutator.ClassMutator;
 import dev.sim0n.caesium.util.wrapper.impl.ClassWrapper;
 import dev.sim0n.caesium.util.wrapper.impl.MethodWrapper;
@@ -51,6 +52,6 @@ public class PolymorphMutator extends ClassMutator {
 
     @Override
     public void handleFinish() {
-        logger.info("Inserted {} useless instructions", counter);
+        Logger.info(String.format("Inserted %d useless instructions", counter));
     }
 }

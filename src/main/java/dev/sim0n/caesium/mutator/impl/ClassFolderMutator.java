@@ -1,5 +1,6 @@
 package dev.sim0n.caesium.mutator.impl;
 
+import be.ninedocteur.caesium.cli.Logger;
 import dev.sim0n.caesium.mutator.ClassMutator;
 import dev.sim0n.caesium.util.wrapper.impl.ClassWrapper;
 
@@ -14,6 +15,6 @@ public class ClassFolderMutator extends ClassMutator {
 
     @Override
     public void handleFinish() {
-        logger.info("Turned {} classes into folders", counter);
+        Logger.info(String.format("Turned %d classes into folders", counter));
     }
 }

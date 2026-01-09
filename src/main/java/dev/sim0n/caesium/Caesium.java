@@ -1,5 +1,6 @@
 package dev.sim0n.caesium;
 
+import be.ninedocteur.caesium.cli.Logger;
 import com.google.common.base.Strings;
 import dev.sim0n.caesium.manager.ClassManager;
 import dev.sim0n.caesium.manager.MutatorManager;
@@ -8,11 +9,8 @@ import dev.sim0n.caesium.util.Dictionary;
 import dev.sim0n.caesium.util.VersionUtil;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.File;
-import java.io.PrintStream;
 import java.security.SecureRandom;
 import java.util.Optional;
 
@@ -23,9 +21,6 @@ public class Caesium {
     public static final String VERSION = VersionUtil.getVersion();
 
     private static final String SEPARATOR = Strings.repeat("-", 30);
-
-    @Getter
-    private static final Logger logger = LogManager.getLogger();
 
     private final SecureRandom random = new SecureRandom();
 
@@ -49,7 +44,7 @@ public class Caesium {
         checkNotNull(output, "Output can't be null");
 
         separator();
-        logger.info(String.format("Caesium version %s", VERSION));
+        Logger.info(String.format("Caesium version %s", VERSION));
         separator();
 
         classManager.parseJar(input);
@@ -59,13 +54,13 @@ public class Caesium {
         double inputKB = ByteUtil.bytesToKB(input.length());
         double outputKB = ByteUtil.bytesToKB(output.length());
 
-        logger.info(String.format("Successfully obfuscated target jar. %.3fkb -> %.3fkb", inputKB, outputKB));
+        Logger.info(String.format("Successfully obfuscated target jar. %.3fkb -> %.3fkb", inputKB, outputKB));
 
         return 0;
     }
 
     public void separator() {
-        logger.info(SEPARATOR);
+        Logger.info(SEPARATOR);
     }
 
     public static Caesium getInstance() {

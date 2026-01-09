@@ -1,5 +1,6 @@
 package dev.sim0n.caesium.manager;
 
+import be.ninedocteur.caesium.cli.Logger;
 import com.google.common.io.ByteStreams;
 import dev.sim0n.caesium.Caesium;
 import dev.sim0n.caesium.exception.CaesiumException;
@@ -8,7 +9,6 @@ import dev.sim0n.caesium.mutator.impl.crasher.ImageCrashMutator;
 import dev.sim0n.caesium.util.ByteUtil;
 import dev.sim0n.caesium.util.wrapper.impl.ClassWrapper;
 import lombok.Getter;
-import org.apache.logging.log4j.Logger;
 import org.objectweb.asm.tree.ClassNode;
 
 import java.io.*;
@@ -27,15 +27,13 @@ public class ClassManager {
 
     private final MutatorManager mutatorManager = caesium.getMutatorManager();
 
-    private final Logger logger = Caesium.getLogger();
-
     private final Map<ClassWrapper, String> classes = new HashMap<>();
     private final Map<String, byte[]> resources = new HashMap<>();
 
     private final ByteArrayOutputStream outputBuffer = new ByteArrayOutputStream();
 
     public void parseJar(File input) throws Exception {
-        logger.info("Loading classes...");
+        Logger.info("Loading classes...");
 
         try (ZipInputStream zis = new ZipInputStream(new FileInputStream(input))) {
             ZipEntry entry;
@@ -46,9 +44,12 @@ public class ClassManager {
                 String name = entry.getName();
 
                 if (name.endsWith(".class")) {
-                    ClassNode classNode = ByteUtil.parseClassBytes(data);
-
-                    classes.put(new ClassWrapper(classNode, false), name);
+                    try {
+                        ClassNode classNode = ByteUtil.parseClassBytes(data);
+                        classes.put(new ClassWrapper(classNode, false), name);
+                    } catch (Throwable t) {
+                        Logger.warn(String.format("Skipping class %s due to parse error: %s", name, t.toString()));
+                    }
                 } else {
                     if (name.equals("META-INF/MANIFEST.MF")) {
                         String manifest = new String(data);
@@ -67,7 +68,7 @@ public class ClassManager {
             }
         }
 
-        logger.info("Loaded {} classes for mutation", classes.size());
+        Logger.info(String.format("Loaded %d classes for mutation", classes.size()));
         caesium.separator();
     }
 

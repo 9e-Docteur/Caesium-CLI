@@ -1,5 +1,6 @@
 package dev.sim0n.caesium.mutator.impl;
 
+import be.ninedocteur.caesium.cli.Logger;
 import dev.sim0n.caesium.mutator.ClassMutator;
 import dev.sim0n.caesium.util.wrapper.impl.ClassWrapper;
 import org.objectweb.asm.tree.*;
@@ -137,8 +138,7 @@ public class TrimMutator extends ClassMutator {
 
     @Override
     public void handleFinish() {
-        logger.info(String.format("Trimmed %d math functions", counter));
+        Logger.info(String.format("Trimmed %d math functions", counter));
     }
 
 }
-

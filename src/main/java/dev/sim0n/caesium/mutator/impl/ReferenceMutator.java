@@ -1,5 +1,6 @@
 package dev.sim0n.caesium.mutator.impl;
 
+import be.ninedocteur.caesium.cli.Logger;
 import com.google.common.base.Strings;
 import dev.sim0n.caesium.mutator.ClassMutator;
 import dev.sim0n.caesium.util.wrapper.impl.ClassWrapper;
@@ -205,7 +206,7 @@ public class ReferenceMutator extends ClassMutator {
 
     @Override
     public void handleFinish() {
-        logger.info("Hid {} method references", counter);
+        Logger.info(String.format("Hid %d method references", counter));
     }
 
     /**

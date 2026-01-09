@@ -1,5 +1,6 @@
 package dev.sim0n.caesium.mutator.impl;
 
+import be.ninedocteur.caesium.cli.Logger;
 import dev.sim0n.caesium.mutator.ClassMutator;
 import dev.sim0n.caesium.util.wrapper.impl.ClassWrapper;
 import dev.sim0n.caesium.util.wrapper.impl.MethodWrapper;
@@ -113,6 +114,6 @@ public class ControlFlowMutator extends ClassMutator {
 
     @Override
     public void handleFinish() {
-        logger.info("Added {} fake jumps", counter);
+        Logger.info(String.format("Added %d fake jumps", counter));
     }
 }

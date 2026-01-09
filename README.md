@@ -18,7 +18,7 @@ This fork is maintained by **9e_Docteur (ninedocteur / Loris P.)**, with a CLI d
 
 ## Why this fork 🚀
 I built this version for my personal and private projects (closed-source), to have a reliable, easy-to-integrate, fully scriptable obfuscation pipeline.
-It's released to the public under the MIT license so anyone can use it freely and adapt it to their needs.
+It's released under the Creative Commons Attribution-NonCommercial 4.0 (CC BY-NC 4.0) license: you can modify and share it for non-commercial use, with credit to both sim0n and 9e-Docteur.
 
 ## Credits 🙌
 - Original author: [sim0n](https://github.com/sim0n)
@@ -95,6 +95,10 @@ CLI options (partial list):
 If you want to join the discord for Caesium to talk, ask questions or anything then feel free to join [the discord](https://discord.gg/kxC2FYMfNZ)
 
 ## Changelog 📅
+### 1.1.2 (2026-01-09)
+- Core logging now uses the CLI color logger (no Log4j console output).
+- Fixed a crash when parsing fat/uber jars by skipping invalid class entries instead of throwing.
+
 ### 1.1.1 (2026-01-09)
 - Added the CLI colored logger (INFO, SUCCESS, WARN, ERROR).
 

@@ -1,5 +1,6 @@
 package dev.sim0n.caesium.mutator.impl;
 
+import be.ninedocteur.caesium.cli.Logger;
 import dev.sim0n.caesium.mutator.ClassMutator;
 import dev.sim0n.caesium.util.wrapper.impl.ClassWrapper;
 
@@ -17,6 +18,6 @@ public class ShuffleMutator extends ClassMutator {
 
     @Override
     public void handleFinish() {
-        logger.info("Shuffled {} members", counter);
+        Logger.info(String.format("Shuffled %d members", counter));
     }
 }

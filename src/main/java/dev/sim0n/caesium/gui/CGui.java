@@ -5,6 +5,7 @@
 package dev.sim0n.caesium.gui;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import be.ninedocteur.caesium.cli.Logger;
 import dev.sim0n.caesium.Caesium;
 import dev.sim0n.caesium.PreRuntime;
 import dev.sim0n.caesium.exception.CaesiumException;
@@ -450,7 +451,7 @@ public class CGui extends JFrame {
                 }
 
                 if (caesium.run(input, output) != 0) {
-                    Caesium.getLogger().warn("Exited with non default exit code.");
+                    Logger.warn("Exited with non default exit code.");
                 }
             } catch (Exception e) {
                 e.printStackTrace();

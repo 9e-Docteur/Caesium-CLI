@@ -1,5 +1,6 @@
 package dev.sim0n.caesium.mutator.impl;
 
+import be.ninedocteur.caesium.cli.Logger;
 import dev.sim0n.caesium.mutator.ClassMutator;
 import dev.sim0n.caesium.util.ASMUtil;
 import dev.sim0n.caesium.util.wrapper.impl.ClassWrapper;
@@ -157,7 +158,7 @@ public class OldStringMutator extends ClassMutator {
 
     @Override
     public void handleFinish() {
-        logger.info("Mutated {} string literals", counter);
+        Logger.info(String.format("Mutated %d string literals", counter));
     }
 
     /**

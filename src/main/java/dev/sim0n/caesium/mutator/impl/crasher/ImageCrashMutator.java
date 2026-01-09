@@ -1,5 +1,6 @@
 package dev.sim0n.caesium.mutator.impl.crasher;
 
+import be.ninedocteur.caesium.cli.Logger;
 import dev.sim0n.caesium.mutator.ClassMutator;
 import dev.sim0n.caesium.util.wrapper.impl.ClassWrapper;
 import org.objectweb.asm.tree.ClassNode;
@@ -25,6 +26,6 @@ public class ImageCrashMutator extends ClassMutator {
 
     @Override
     public void handleFinish() {
-        logger.info("Inserted crash class");
+        Logger.info("Inserted crash class");
     }
 }

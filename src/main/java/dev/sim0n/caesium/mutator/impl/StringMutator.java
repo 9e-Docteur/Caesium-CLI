@@ -1,5 +1,6 @@
 package dev.sim0n.caesium.mutator.impl;
 
+import be.ninedocteur.caesium.cli.Logger;
 import com.google.common.base.Charsets;
 import dev.sim0n.caesium.mutator.ClassMutator;
 import dev.sim0n.caesium.util.ASMUtil;
@@ -174,7 +175,7 @@ public class StringMutator extends ClassMutator {
 
     @Override
     public void handleFinish() {
-        logger.info("encrypted {} string literals", counter);
+        Logger.info(String.format("encrypted %d string literals", counter));
     }
 
 

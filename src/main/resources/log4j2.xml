@@ -5,9 +5,7 @@
     </Properties>
 
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level> %msg%n"/>
-        </Console>
+        <CliLogger name="CliLogger"/>
 
         <File name="File" fileName="${filename}">
             <PatternLayout pattern="[%d{YYYY:MM:HH:mm:ss}] %-5level%msg%n"/>
@@ -16,7 +14,7 @@
 
     <Loggers>
         <Root level="INFO">
-            <AppenderRef ref="Console"/>
+            <AppenderRef ref="CliLogger"/>
             <AppenderRef ref="File"/>
         </Root>
     </Loggers>
