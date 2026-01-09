@@ -1,11 +1,16 @@
 # Caesium
-Caesium is a powerful Java bytecode obfuscator written by [sim0n](https://github.com/sim0n) for fun, and released for the public.
+Caesium is a fast, efficient Java bytecode obfuscator originally created by [sim0n](https://github.com/sim0n).
+This fork is maintained by **9e_Docteur (ninedocteur / Loris P.)**, with a CLI designed for automation (Gradle/CI) and real-world private project usage.
 
 ![Image of Caesium UI](https://i.imgur.com/drrn9ib.png)
 
+## Why this fork
+I built this version for my personal and private projects (closed-source), to have a reliable, easy-to-integrate, fully scriptable obfuscation pipeline.
+It's released to the public under the MIT license so anyone can use it freely and adapt it to their needs.
+
 ## Credits
 - Original author: [sim0n](https://github.com/sim0n)
-- CLI integration for Gradle: 9e-Docteur (ninedocteur / Loris P.)
+- Fork & CLI integration: 9e_Docteur (ninedocteur / Loris P.)
 
 ### Currently available mutators
 * Class Folder (Turns classes into folders)

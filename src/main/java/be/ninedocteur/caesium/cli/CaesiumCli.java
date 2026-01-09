@@ -5,6 +5,8 @@ import dev.sim0n.caesium.PreRuntime;
 import dev.sim0n.caesium.exception.CaesiumException;
 import dev.sim0n.caesium.manager.MutatorManager;
 import dev.sim0n.caesium.mutator.impl.*;
+import dev.sim0n.caesium.mutator.impl.crasher.BadAnnotationMutator;
+import dev.sim0n.caesium.mutator.impl.crasher.ImageCrashMutator;
 import dev.sim0n.caesium.util.Dictionary;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
