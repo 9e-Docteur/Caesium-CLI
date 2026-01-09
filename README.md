@@ -29,9 +29,18 @@ You have to add every dependency your jar relies on.
 Caesium is very optimised and the performance loss shouldn't be more than 5-10% (unless you're using reference mutation)
 
 ## Usage
-- Run the jar.
+### GUI
+- Run the jar with no arguments to open the GUI.
 - Select mutators in the mutators tab.
 - Hit mutate. Done!
+
+### CLI
+- Run the jar with arguments to use the CLI (no GUI will open).
+- The CLI is intended for automation (Gradle/CI) and headless use.
+- Example:
+```
+java -jar caesium-cli-1.1.jar --input app.jar --output app-obf.jar --string --control-flow
+```
 
 ## CLI (Gradle)
 You can call the CLI entry point `be.ninedocteur.caesium.cli.CaesiumCli` from a Gradle `JavaExec` task.
@@ -39,7 +48,7 @@ You can call the CLI entry point `be.ninedocteur.caesium.cli.CaesiumCli` from a 
 Example (Gradle Groovy DSL):
 ```
 tasks.register("caesiumObfuscate", JavaExec) {
-    classpath = files("path/to/caesium-1.0.9.jar")
+    classpath = files("path/to/caesium-cli-1.1.jar")
     mainClass.set("be.ninedocteur.caesium.cli.CaesiumCli")
     args "--input", "$buildDir/libs/app.jar",
          "--output", "$buildDir/libs/app-obf.jar",
@@ -60,6 +69,15 @@ CLI options (partial list):
 - `--library` (repeatable)
 - `--dictionary` (`abc`, `ABC`, `III`, `numbers`, `wack`)
 - `--overwrite`
+
+## Maven coordinates
+```
+<dependency>
+  <groupId>be.ninedocteur</groupId>
+  <artifactId>caesium-cli</artifactId>
+  <version>1.1</version>
+</dependency>
+```
 
 ## Community 
 If you want to join the discord for Caesium to talk, ask questions or anything then feel free to join [the discord](https://discord.gg/kxC2FYMfNZ)
