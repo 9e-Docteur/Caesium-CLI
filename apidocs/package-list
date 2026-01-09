@@ -1,0 +1,13 @@
+be.ninedocteur.caesium.cli
+dev.sim0n.caesium
+dev.sim0n.caesium.exception
+dev.sim0n.caesium.gui
+dev.sim0n.caesium.manager
+dev.sim0n.caesium.mutator
+dev.sim0n.caesium.mutator.impl
+dev.sim0n.caesium.mutator.impl.crasher
+dev.sim0n.caesium.util
+dev.sim0n.caesium.util.classwriter
+dev.sim0n.caesium.util.trait
+dev.sim0n.caesium.util.wrapper
+dev.sim0n.caesium.util.wrapper.impl
